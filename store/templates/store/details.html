@@ -1,0 +1,40 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <style>
+        .product-details-container{
+            display: flex;
+            gap: 3rem;
+        }
+
+        .product-details{
+            display: flex;
+            flex-direction: column;
+        }
+        .thumbnaill{
+            width: 35%;
+            height: 100%;
+            -webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+            -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+            box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+        }
+        .quantity{
+            display: inline-block;
+            font-weight: 700;
+            padding-right:10px;
+        }
+    </style>
+</head>
+<div style="margin-bottom: 10px;"><a  class="btn btn-outline-dark" href="{% url 'store' %}">&#x2190; Continue Shopping</a></div>
+<div class="product-details-container">
+    <img class="thumbnaill" src="{{product.imageURL}}">
+    <div class="product-details">
+        <h3>{{product.name}}</h3>
+        <p>Price: Ksh. {{product.price}}</p>
+        <p>{{product.desc}}</p>
+        <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+    </div>
+</div>
+
+{% endblock content %}
