@@ -14,7 +14,8 @@ def ads(request):
 	items = data['items']
 
 	products = Product.objects.all()
-	context = {'products':products, 'cartItems':cartItems}
+	category = Category.objects.all()
+	context = {'products':products, 'cartItems':cartItems, 'category': category}
 	return render(request, 'store/ads.html', context)
 
 def store(request):
@@ -103,7 +104,17 @@ def processOrder(request):
 
 	return JsonResponse('Payment submitted..', safe=False)
 
+# product details
 def product_details(request, id):
+	product = Product.objects.get(id=id)
+	context = {
+		"product": product
+	}
+	return render(request, 'store/details.html', context)
+
+# category list
+def product_details(request, id):
+	# category = Category.objects.get(id=cat_id)
 	product = Product.objects.get(id=id)
 	context = {
 		"product": product
@@ -116,3 +127,8 @@ def search(request):
 	
 	return render(request, 'store/search.html', {'products':products})
 
+
+def category(request, cat_id):
+	category = Category.objects.get(id=cat_id)
+	products = Product.objects.filter(category=category).order_by('-id')
+	return render(request, 'store/category.html', {'products': products})
