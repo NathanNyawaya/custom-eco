@@ -1,2 +1,2 @@
 # custom-eco
-# nate--econ
+Django e-commerce
