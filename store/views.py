@@ -11,7 +11,7 @@ def ads(request):
 
 	cartItems = data['cartItems']
 	order = data['order']
-	items = data['items']
+	items = data['cartItems']
 
 	products = Product.objects.all()
 	category = Category.objects.all()
@@ -106,29 +106,36 @@ def processOrder(request):
 
 # product details
 def product_details(request, id):
+	data = cartData(request)
+	cartItems = data['cartItems']
 	product = Product.objects.get(id=id)
 	context = {
-		"product": product
+		"product": product,
+		'cartItems': cartItems
 	}
 	return render(request, 'store/details.html', context)
 
 # category list
-def product_details(request, id):
-	# category = Category.objects.get(id=cat_id)
-	product = Product.objects.get(id=id)
-	context = {
-		"product": product
-	}
-	return render(request, 'store/details.html', context)
+# def product_details(request, id):
+# 	# category = Category.objects.get(id=cat_id)
+# 	product = Product.objects.get(id=id)
+# 	context = {
+# 		"product": product
+# 	}
+# 	return render(request, 'store/details.html', context)
 
 def search(request):
+	data = cartData(request)
+	cartItems = data['cartItems']
 	q=request.GET.get("q")
 	products = Product.objects.filter(name__icontains=q)
 	
-	return render(request, 'store/search.html', {'products':products})
+	return render(request, 'store/search.html', {'products':products, 'cartItems': cartItems})
 
 
 def category(request, cat_id):
+	data = cartData(request)
+	cartItems = data['cartItems']
 	category = Category.objects.get(id=cat_id)
 	products = Product.objects.filter(category=category).order_by('-id')
-	return render(request, 'store/category.html', {'products': products})
+	return render(request, 'store/category.html', {'products': products, 'cartItems': cartItems})

@@ -4,23 +4,27 @@
 
 {% block content %} 
 
-
-
 {% if form.errors %}
-<p>There was an error while submitting your form</p>
+  <div class="alert alert-danger" role="alert">
+    There was an error while submitting your form.
+  </div>
 {% endif %}
 
-<div class="col-md-6 offset-md-3">
-  <h1>Register</h1>
-  <br />
-
-  <form method="POST" action="">
-    {% csrf_token %} {{ form|crispy }}
-    <br />
-    <button type="submit" class="btn btn-secondary">Register</button>
-  </form>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title text-center mb-4">Register</h1>
+          <form method="POST" action="">
+            {% csrf_token %} 
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary btn-block mt-4">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-
 
 {% endblock content %}

@@ -1,23 +1,25 @@
 {% extends 'store/main.html' %}
 {% load static %}
+
 {% block content %}
-<p class="fs-3"><span class="text-muted ">Search result for..</span> {{request.GET.q}}</p>
-	<div class="row">
-		{% for product in products %}
-		<div class="col-lg-4">
-			<img class="thumbnail" src="{{product.imageURL}}">
-			<div class="box-element product">
-				<h6><strong>{{product.name}}</strong></h6>
-				<hr>
+  <p class="fs-3"><span class="text-muted">Search result for..</span> {{ request.GET.q }}</p>
 
-				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-				
-				<a class="btn btn-outline-success" href="{{product.id}}">View</a>
-				<h4 style="display: inline; float: right"><strong>Ksh.{{product.price}}</strong></h4>
-
-			</div>
-		</div>
-		{% endfor %}
-	</div>
-
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for product in products %}
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{ product.imageURL }}" class="card-img-top" alt="{{ product.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Ksh. {{ product.price }}</h6>
+            <p class="card-text">{{ product.description }}</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-outline-secondary add-btn update-cart" data-product="{{ product.id }}" data-action="add">Add to Cart</button>
+            <a href="{{ product.id }}" class="btn btn-outline-success">View</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock content %}

@@ -7,14 +7,14 @@
             display: flex;
             gap: 3rem;
         }
-
         .product-details{
             display: flex;
             flex-direction: column;
         }
-        .thumbnaill{
-            width: 35%;
-            height: 100%;
+        .thumbnail{
+            width: 50%;
+            height: auto;
+            object-fit: contain;
             -webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
             -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
             box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
@@ -24,17 +24,61 @@
             font-weight: 700;
             padding-right:10px;
         }
-    </style>
-</head>
-<div style="margin-bottom: 10px;"><a  class="btn btn-outline-dark" href="{% url 'store' %}">&#x2190; Continue Shopping</a></div>
-<div class="product-details-container">
-    <img class="thumbnaill" src="{{product.imageURL}}">
-    <div class="product-details">
-        <h5>{{product.name}}</h5>
-        <p class="text-muted">Price: Ksh. {{product.price}}</p>
-        <p class="text-muted">{{product.desc}}</p>
-        <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-    </div>
-</div>
+        .product-images {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .product-image {
+            width: 80%;
+            height: auto;
+            object-fit: contain;
+            margin-right: 2rem;
+            -webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+            -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+            box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+        }
+        .product-description {
+            margin-bottom: 2rem;
+        }
+        .product-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .product-price {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .add-to-cart-btn {
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            background-color: #3d3d3d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        .add-to-cart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+        }
+</style>
 
+</head>
+<div style="margin-bottom: 10px;"><a  class="btn btn-outline-dark" href="{% url 'store' %}">&#x2190; Back</a></div>
+<div class="product-details-container">
+    <div class="product-images">
+        <img class="product-image thumbnail" src="{{product.imageURL}}">
+    </div>
+    <div class="product-details">
+        <div class="product-description">
+            <h1 class="product-title">{{product.name}}</h1>
+            <p class="product-price">Price: Ksh. {{product.price}}</p>
+            <p>{{product.desc}}</p>
+        </div>
+        <button data-product="{{product.id}}" data-action="add" class="add-to-cart-btn update-cart p-2" style="border-radius: 0">Add to Cart</button>
+    </div>
 {% endblock content %}

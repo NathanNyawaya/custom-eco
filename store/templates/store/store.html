@@ -1,22 +1,25 @@
 {% extends 'store/main.html' %}
 {% load static %}
+
 {% block content %}
-	<div class="row">
-		{% for product in products %}
-		<div class="col-lg-4">
-			<img class="thumbnail" src="{{product.imageURL}}">
-			<div class="box-element product">
-				<p><strong>{{product.name}}</strong></p>
-				<hr>
-
-				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-				
-				<a class="btn btn-outline-success" href="{{product.id}}">View</a>
-				<p style="display: inline; float: right"><strong>Ksh.{{product.price}}</strong></p>
-
-			</div>
-		</div>
-		{% endfor %}
-	</div>
-
+<div class="row">
+  {% for product in products %}
+  <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+    <div class="card h-100">
+      <a href="{{product.id}}"><img class="card-img-top" src="{{product.imageURL}}" alt="{{product.name}}"></a>
+      <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <p class="card-text">{{product.desc}}</p>
+      </div>
+      <div class="card-footer d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+          <button data-product="{{product.id}}" data-action="add" class="btn btn-sm btn-outline-secondary add-btn update-cart">Add to Cart</button>
+          <a class="btn btn-sm btn-outline-success" href="{{product.id}}">View</a>
+        </div>
+        <p class="card-text mb-0"><strong>Ksh.{{product.price}}</strong></p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
 {% endblock content %}
