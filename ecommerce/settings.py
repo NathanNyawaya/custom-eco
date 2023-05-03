@@ -10,9 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+
+
 import os
 
 # settings.py
+
 
 from django.db.models import BigAutoField
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -43,7 +46,7 @@ INSTALLED_APPS = [
     'customers',
     'store.apps.StoreConfig',
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
 ]
 
 
@@ -143,3 +146,4 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/images/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+

@@ -4,7 +4,7 @@
 {% if products %}
 <p class="fs-3"><span class="text-muted ">{{products.category}}</span></p>
 {% endif %}
-<div class="row">
+<div class="row container">
 	{% for product in products %}
 		<div class="col-lg-4">
 			<img class="thumbnail" src="{{product.imageURL}}">

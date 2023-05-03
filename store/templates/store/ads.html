@@ -8,7 +8,7 @@
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
-  <div class="carousel-inner" style="height: 40vh">
+  <div class="carousel-inner rounded" style="height: 40vh">
     <div class="carousel-item active">
       <img class="d-block w-100 h-100" src="{% static 'images/banner1.avif' %}" alt="First slide">
     </div>
@@ -30,17 +30,17 @@
 </div>
 
 <div class="category--header">
-  <h1>Category</h1>
 </div>
 
-<div class="container my-4">
-	<div class="row category--section" id="category">
+<p>Category</p>
+<div class="container d-flex my-4 py-5 rounded bg-warning">
+	<div class="category--section" id="category">
 	  {% for data in category %}
-	  <a href="category/{{data.id}}" class="col-md-3 col-sm-6 col-12 mb-4 stretched-link">
-		<div class="card p-0">
-		  <img class="card-img-top" src="{{data.imageURL}}" alt="{{data.title}}" style="height: 200px">
-		  <div class="card-body text-center">
-			<h6 class="card-title">{{data.title}}</h6>
+	  <a href="category/{{data.id}}" class="card--container mb-4 stretched-link">
+		<div class="card--container p-0">
+		  <img class="card-img-top" src="{{data.imageURL}}" alt="{{data.title}}" style="height: 150px;">
+		  <div class="text-center">
+			<p class="title--text">{{data.title}}</p>
 		  </div>
 		</div>
 	  </a>
